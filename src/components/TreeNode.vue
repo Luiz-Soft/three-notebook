@@ -23,7 +23,7 @@ function addNote(){if(noteText.value.trim()){props.node.notes.push({text:noteTex
       
       <button class="outline-node__title" @click="store.selectedId=node.id">{{node.title}}</button>
       <span v-if="node.later" class="outline-node__later"> [LATER]</span>
-      <button v-if="due" class="outline-node__reminder" @click="store.selectedId=node.id" title="Review is due" :aria-label="`Review due: ${node.title}`">🔔</button>
+      <button v-if="due" class="outline-node__reminder" @click="store.selectedId=node.id" title="Review is due" :aria-label="`Review due: ${node.title}`">🔁</button>
       <span v-else-if="node.reviewRequested" class="outline-node__repeat" title="Repeat this pattern"> 🔁</span>
       <template v-for="(p,i) in node.problems" :key="`${p.id}-${i}`"><a v-if="safeLink(p.url)" class="outline-node__problem" :class="{'outline-node__problem--alternative':p.role==='alternative'}" :href="safeLink(p.url)" target="_blank" rel="noopener noreferrer" :title="p.context||p.role">{{p.role==='primary'?'⭐':'↔'}} LC {{p.id}} · {{p.title}}</a><span v-else class="outline-node__problem">{{p.role==='primary'?'⭐':'↔'}} LC {{p.id}} · {{p.title}}</span></template>
     </div>
